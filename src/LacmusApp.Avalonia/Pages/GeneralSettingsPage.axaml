@@ -14,19 +14,19 @@
                 <TextBlock Classes="Heading" 
                            Text="{x:Static l:Settings.Language}"
                 />
-                <ComboBox Items="{Binding SupportedLanguages, Mode=OneWay}"
+                <ComboBox ItemsSource="{Binding SupportedLanguages, Mode=OneWay}"
                           SelectedItem="{Binding Language, Mode=TwoWay}" 
                           Margin="5 0"/>
                 <TextBlock Classes="Heading" 
                            Text="{x:Static l:Settings.Theme}"
                 />
-                <ComboBox Items="{Binding SupportedThemes, Mode=OneWay}"
+                <ComboBox ItemsSource="{Binding SupportedThemes, Mode=OneWay}"
                           SelectedItem="{Binding Theme, Mode=TwoWay}" 
                           Margin="5 0"/>
                 <TextBlock Classes="Heading" 
                            Text="{x:Static l:Settings.BoundingBoxColour}"
                 />
-                <ComboBox Items="{Binding SupportedBoundingBoxColours, Mode=OneWay}"
+                <ComboBox ItemsSource="{Binding SupportedBoundingBoxColours, Mode=OneWay}"
                           SelectedItem="{Binding BoundingBoxColour, Mode=TwoWay}"
                           Margin="5 0"/>
             </StackPanel>

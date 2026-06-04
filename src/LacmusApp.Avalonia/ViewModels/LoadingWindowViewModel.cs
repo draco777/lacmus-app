@@ -15,12 +15,12 @@ using LacmusApp.Avalonia.Views;
 using LacmusApp.Plugin.Services;
 using LacmusApp.Screens.ViewModels;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using Serilog;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class LoadingWindowViewModel : ReactiveObject
+    public partial class LoadingWindowViewModel : ReactiveObject
     {
         private readonly Window _window;
         
@@ -30,7 +30,7 @@ namespace LacmusApp.Avalonia.ViewModels
             InitCommand = ReactiveCommand.Create(Init);
         }
         
-        [Reactive] public string TextVersion { get; set; } = GetVersion() + ".";
+        [Reactive] private string _textVersion = GetVersion() + ".";
         public ReactiveCommand<Unit, Unit> InitCommand { get; set; }
 
         private async void Init()

@@ -5,7 +5,7 @@ using LacmusApp.Avalonia.ViewModels;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class FirstWizardView : ReactiveUserControl<FirstWizardViewModel>
+    public partial class FirstWizardView : ReactiveUserControl<FirstWizardViewModel>
     {
         public FirstWizardView()
         {

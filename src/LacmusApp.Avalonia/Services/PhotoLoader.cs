@@ -28,12 +28,7 @@ namespace LacmusApp.Avalonia.Services
         
         public async Task<PhotoViewModel[]> ReadAllFromDirByPhoto(LoadType loadType = LoadType.Miniature, bool isRecursive = false)
         {
-            var dig = new OpenFolderDialog()
-            {
-                //TODO: Multi language support
-                Title = "Chose directory image files"
-            };
-            var multipleFiles = await _reader.SelectAllFilesFromDir(dig, isRecursive);
+            var multipleFiles = await _reader.SelectAllFilesFromDir("Chose directory image files", isRecursive);
             multipleFiles = multipleFiles.Where(s =>
                 s.ToLower().EndsWith(".png") ||
                 s.ToLower().EndsWith(".jpg") ||
@@ -83,12 +78,7 @@ namespace LacmusApp.Avalonia.Services
         
         public async Task<PhotoViewModel[]> ReadAllFromDirByAnnotation(LoadType loadType = LoadType.Miniature, bool isRecursive = false)
         {
-            var dig = new OpenFolderDialog()
-            {
-                //TODO: Multi language support
-                Title = "Chose directory image files"
-            };
-            var multipleFiles = await _reader.SelectAllFilesFromDir(dig, isRecursive);
+            var multipleFiles = await _reader.SelectAllFilesFromDir("Chose directory image files", isRecursive);
             multipleFiles = multipleFiles.Where(s =>
                 s.ToLower().EndsWith(".xml"));
             var reader = new AvaloniaBrushReader(loadType);

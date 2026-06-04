@@ -10,15 +10,16 @@ using DynamicData;
 using LacmusApp.Avalonia.Managers;
 using LacmusApp.Avalonia.Models;
 using LacmusApp.Avalonia.Services;
+using LacmusApp.Avalonia.Services.Files;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using ReactiveUI.Validation.Extensions;
 using ReactiveUI.Validation.Helpers;
 using Serilog;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class SaveAsWindowViewModel : ReactiveValidationObject
+    public partial class SaveAsWindowViewModel : ReactiveValidationObject
     {
         private readonly SourceList<PhotoViewModel> _photos;
         private readonly ApplicationStatusManager _applicationStatusManager;
@@ -35,31 +36,27 @@ namespace LacmusApp.Avalonia.ViewModels
                 Directory.Exists,
                 path => $"Incorrect path {path}");
 
-            SelectPathCommand = ReactiveCommand.Create(SelectOutputFolder);
+            SelectPathCommand = ReactiveCommand.CreateFromTask(SelectOutputFolder);
             SaveCommand = ReactiveCommand.CreateFromTask(SavePhotos, this.IsValid());
         }
-        [Reactive] public string OutputPath { get; set; }
-        [Reactive] public int FilterIndex { get; set; } = 0;
-        [Reactive] public bool IsSaveCrop { get; set; }
-        [Reactive] public bool IsSaveXml { get; set; }
-        [Reactive] public bool IsSaveImage { get; set; }
-        [Reactive] public bool IsSaveDrawImage { get; set; }
-        [Reactive] public bool IsSaveGeoPosition { get; set; }
-        [Reactive] public LocalizationContext LocalizationContext { get; set; }
+        [Reactive] private string _outputPath;
+        [Reactive] private int _filterIndex = 0;
+        [Reactive] private bool _isSaveCrop;
+        [Reactive] private bool _isSaveXml;
+        [Reactive] private bool _isSaveImage;
+        [Reactive] private bool _isSaveDrawImage;
+        [Reactive] private bool _isSaveGeoPosition;
+        [Reactive] private LocalizationContext _localizationContext;
         public ReactiveCommand<Unit, Unit> SelectPathCommand { get; set; }
         public ReactiveCommand<Unit, Unit> SaveCommand { get; set; }
 
-        private async void SelectOutputFolder()
+        private async Task SelectOutputFolder()
         {
             try
             {
-                var dig = new OpenFolderDialog()
-                {
-                    //TODO: Multi language support
-                    Title = "Select folder to save"
-                };
-                var dirPath = await dig.ShowAsync(new Window());
-                OutputPath = dirPath;
+                var dirPath = await StorageDialog.PickFolderAsync("Select folder to save");
+                if (!string.IsNullOrEmpty(dirPath))
+                    OutputPath = dirPath;
             }
             catch (Exception e)
             {

@@ -1,13 +1,10 @@
-using ReactiveUI.Fody.Helpers;
-
 namespace LacmusApp.Avalonia.Services.Plugin
 {
     public class ReactivePluginData
     {
-        [Reactive] public string Name { get; set; }
-        //[Reactive] public MLModelType Type { get; set; }
-        [Reactive] public uint Version { get; set; }
-        [Reactive] public uint ApiVersion { get; set; }
+        public string Name { get; }
+        public uint Version { get; }
+        public uint ApiVersion { get; }
 
         public ReactivePluginData(string name, uint version, uint apiVersion)
         {

@@ -7,9 +7,9 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using LacmusApp.Avalonia.Managers;
-using MessageBox.Avalonia;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Enums;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
+using MsBox.Avalonia.Enums;
 using Newtonsoft.Json;
 using ReactiveUI;
 using LacmusApp.Avalonia.Models;
@@ -19,7 +19,7 @@ using LacmusApp.Avalonia.ViewModels;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public sealed class WizardWindow : ReactiveWindow<WizardWindowViewModel>
+    public sealed partial class WizardWindow : ReactiveWindow<WizardWindowViewModel>
     { 
         public LocalizationContext LocalizationContext { get; }
         public ThemeManager ThemeManager { get; }

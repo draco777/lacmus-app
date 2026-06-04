@@ -6,7 +6,7 @@ using LacmusApp.Screens.Interfaces;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class About : ReactiveWindow<IAboutViewModel>
+    public partial class About : ReactiveWindow<IAboutViewModel>
     {
         public About()
         {

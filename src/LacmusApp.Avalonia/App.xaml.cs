@@ -13,7 +13,7 @@ using Serilog;
 
 namespace LacmusApp.Avalonia
 {
-    public class App : Application
+    public partial class App : Application
     {
         public override void Initialize() => AvaloniaXamlLoader.Load(this);
 

@@ -6,7 +6,7 @@ using ReactiveUI;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class SaveAsWindow : ReactiveWindow<SaveAsWindowViewModel>
+    public partial class SaveAsWindow : ReactiveWindow<SaveAsWindowViewModel>
     {
         public SaveAsWindow(ThemeManager themeManager)
         {

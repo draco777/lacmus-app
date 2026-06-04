@@ -1,7 +1,7 @@
 using System.IO;
 using LacmusApp.Screens.Interfaces;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
@@ -9,7 +9,7 @@ using Serilog.Formatting.Display;
 
 namespace LacmusApp.Screens.ViewModels;
 
-public class LogViewModel : ReactiveObject, ILogViewModel, ILogEventSink
+public partial class LogViewModel : ReactiveObject, ILogViewModel, ILogEventSink
 {
     private readonly ITextFormatter _formatter;
     
@@ -20,7 +20,7 @@ public class LogViewModel : ReactiveObject, ILogViewModel, ILogEventSink
         _formatter = new MessageTemplateTextFormatter(template);
     }
 
-    [Reactive] public string LogText { get; private set; }
+    [Reactive] private string _logText;
     
     public void Emit(LogEvent logEvent)
     {

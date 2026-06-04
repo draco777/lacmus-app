@@ -46,18 +46,20 @@
             <TextBlock Foreground="Blue" Text="{Binding Url}" />
             <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                 <TextBox Classes="PrimaryBadge" Text="{Binding InferenceType}"/>
-                <ItemsRepeater
+                <ItemsControl
                     Margin="2 0 0 0"
-                    Items="{Binding OperatingSystems}">
-                    <ItemsRepeater.Layout>
-                        <StackLayout Orientation="Horizontal"/>
-                    </ItemsRepeater.Layout>
-                    <ItemsRepeater.ItemTemplate>
+                    ItemsSource="{Binding OperatingSystems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <TextBox Classes="Badge" Margin="2 5" Text="{Binding}"/>
                         </DataTemplate>
-                    </ItemsRepeater.ItemTemplate>
-                </ItemsRepeater>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
             <TextBlock HorizontalAlignment="Left" MaxWidth="350" Foreground="Red" TextWrapping="WrapWithOverflow" Text="{Binding ErrorMessage}" IsVisible="{Binding HasErrorMessage}" />
         </StackPanel>

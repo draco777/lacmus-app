@@ -5,42 +5,42 @@ using System.Reactive;
 using Avalonia.Threading;
 using LacmusApp.Appearance.Enums;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using LacmusApp.Avalonia.Managers;
 using LacmusApp.Avalonia.Models;
 using LacmusApp.Avalonia.Services;
 using LacmusApp.Avalonia.Services.Plugin;
 using LacmusApp.Avalonia.Views;
 using LacmusApp.Screens.ViewModels;
-using MessageBox.Avalonia;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Enums;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
+using MsBox.Avalonia.Enums;
 using Serilog;
 using OperatingSystem = LacmusPlugin.OperatingSystem;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class ThirdWizardViewModel : ReactiveObject, IRoutableViewModel
+    public partial class ThirdWizardViewModel : ReactiveObject, IRoutableViewModel
     {
         private readonly ApplicationStatusManager _applicationStatusManager;
         private WizardWindow _window;
         private SettingsViewModel _settingsViewModel;
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; } = Guid.NewGuid().ToString().Substring(0, 5);
-        [Reactive] public string Name { get; set; } = "None";
-        [Reactive] public string Author { get; set; } = "None";
-        [Reactive] public string Company { get; set; } = "None";
-        [Reactive] public string Description { get; set; } = "None";
-        [Reactive] public string Tag { get; set; } = "None";
-        [Reactive] public string InferenceType { get; set; } = "None";
-        [Reactive] public string Version { get; set; } = "None";
-        [Reactive] public string Url { get; set; } = "None";
-        [Reactive] public string OperatingSystems { get; set; } = "None";
-        [Reactive] public string Status { get; set; } = "Not ready";
-        [Reactive] public string Error { get; set; }
-        [Reactive] public bool IsError { get; set; } = false;
-        [Reactive] public bool IsShowLoadModelButton { get; set; } = false;
-        [Reactive] public LocalizationContext LocalizationContext { get; set; }
+        [Reactive] private string _name = "None";
+        [Reactive] private string _author = "None";
+        [Reactive] private string _company = "None";
+        [Reactive] private string _description = "None";
+        [Reactive] private string _tag = "None";
+        [Reactive] private string _inferenceType = "None";
+        [Reactive] private string _version = "None";
+        [Reactive] private string _url = "None";
+        [Reactive] private string _operatingSystems = "None";
+        [Reactive] private string _status = "Not ready";
+        [Reactive] private string _error;
+        [Reactive] private bool _isError = false;
+        [Reactive] private bool _isShowLoadModelButton = false;
+        [Reactive] private LocalizationContext _localizationContext;
         
         public ReactiveCommand<Unit, Unit> LoadModelCommand { get; }
         public ReactiveCommand<Unit, Unit> UpdateModelStatusCommand { get; }
@@ -152,15 +152,15 @@ namespace LacmusApp.Avalonia.ViewModels
             var msg = "To apply settings you need to restart application.";
             if (LocalizationContext.Language == Language.Russian)
                 msg = "Чтобы применить настройки необходим перезапуск программы.";
-            var msgbox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+            var msgbox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {
                 ButtonDefinitions = ButtonEnum.Ok,
                 ContentTitle = "Need to restart",
                 ContentMessage = msg,
-                Icon = MessageBox.Avalonia.Enums.Icon.Info,
+                Icon = MsBox.Avalonia.Enums.Icon.Info,
                 ShowInCenter = true
             });
-            var result = await msgbox.Show();
+            var result = await msgbox.ShowAsync();
             Environment.Exit(0);
         }
     }

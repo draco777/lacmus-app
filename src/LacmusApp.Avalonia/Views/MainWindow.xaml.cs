@@ -13,7 +13,7 @@ using LacmusApp.Avalonia.ViewModels;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public sealed class MainWindow : ReactiveWindow<MainWindowViewModel>
+    public sealed partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     {
         public MainWindow()
         {

@@ -130,7 +130,7 @@
         </ComboBox>
         <ListBox Grid.Column="0" Grid.Row="1"
                  x:Name="ImageList" 
-                 Items="{Binding PhotoCollection}"
+                 ItemsSource="{Binding PhotoCollection}"
                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
           <ListBox.DataTemplates>
             <DataTemplate DataType="{x:Type vm:PhotoViewModel}">
@@ -230,7 +230,7 @@
           <ItemsControl
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Items="{Binding PhotoViewModel.BoundBoxes}"
+            ItemsSource="{Binding PhotoViewModel.BoundBoxes}"
             Width="{Binding CanvasWidth}"
             Height="{Binding CanvasHeight}"
             >

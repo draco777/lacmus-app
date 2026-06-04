@@ -8,7 +8,7 @@ using ReactiveUI;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class LoadingWindow : ReactiveWindow<LoadingWindowViewModel>
+    public partial class LoadingWindow : ReactiveWindow<LoadingWindowViewModel>
     {
         public LoadingWindow()
         {

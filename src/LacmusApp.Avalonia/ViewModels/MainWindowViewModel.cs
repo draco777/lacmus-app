@@ -15,11 +15,11 @@ using Avalonia.Threading;
 using DynamicData;
 using DynamicData.Binding;
 using LacmusApp.Avalonia.Appearence.ViewModels;
-using MessageBox.Avalonia;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Enums;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
+using MsBox.Avalonia.Enums;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using LacmusApp.Avalonia.Managers;
 using LacmusApp.Avalonia.Models;
 using LacmusApp.Avalonia.Services;
@@ -36,7 +36,7 @@ using Language = LacmusApp.Appearance.Enums.Language;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class MainWindowViewModel : ReactiveObject
+    public partial class MainWindowViewModel : ReactiveObject
     {
         private readonly ApplicationStatusManager _applicationStatusManager;
         private readonly Window _window;
@@ -46,7 +46,6 @@ namespace LacmusApp.Avalonia.ViewModels
         
         private int itemPerPage = 500;
         private int itemcount;
-        private int _totalPages;
         SourceList<PhotoViewModel> _photos { get; set; } = new SourceList<PhotoViewModel>();
         private ReadOnlyObservableCollection<PhotoViewModel> _photoCollection;
         
@@ -172,22 +171,18 @@ namespace LacmusApp.Avalonia.ViewModels
 
         #region Public API
         public ReadOnlyObservableCollection<PhotoViewModel> PhotoCollection => _photoCollection;
-        [Reactive] public int SelectedIndex { get; set; }
-        [Reactive] public int CurrentPage { get; set; } = 0;
-        [Reactive] public int FilterIndex { get; set; } = 0;
-        [Reactive] public PhotoViewModel PhotoViewModel { get; set; }
-        [Reactive] public ApplicationStatusViewModel ApplicationStatusViewModel { get; set; }
-        [Reactive] public int TotalPages
-        {
-            get => _totalPages;
-            set => _totalPages = value;
-        }
+        [Reactive] private int _selectedIndex;
+        [Reactive] private int _currentPage = 0;
+        [Reactive] private int _filterIndex = 0;
+        [Reactive] private PhotoViewModel _photoViewModel;
+        [Reactive] private ApplicationStatusViewModel _applicationStatusViewModel;
+        [Reactive] private int _totalPages;
         // TODO: update with locales
-        [Reactive] public string FavoritesStateString { get; set; } = "Add to favorites";
-        [Reactive] public double CanvasWidth { get; set; } = 500;
-        [Reactive] public double CanvasHeight { get; set; } = 500;
-        [Reactive] public LocalizationContext LocalizationContext {get; set;}
-        [Reactive] public bool IsShowBorder { get; set; } = true;
+        [Reactive] private string _favoritesStateString = "Add to favorites";
+        [Reactive] private double _canvasWidth = 500;
+        [Reactive] private double _canvasHeight = 500;
+        [Reactive] private LocalizationContext _localizationContext;
+        [Reactive] private bool _isShowBorder = true;
 
         public ReactiveCommand<Unit, Unit> PredictAllCommand { get; set; }
         public ReactiveCommand<Unit, Unit> NextImageCommand { get; }
@@ -540,7 +535,7 @@ namespace LacmusApp.Avalonia.ViewModels
 
         public async void Exit()
         {
-            var window = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+            var window = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {
                 ContentTitle = "Exit",
                 ContentMessage = "Do you really want to exit?",
@@ -548,7 +543,7 @@ namespace LacmusApp.Avalonia.ViewModels
                 ShowInCenter = true,
                 ButtonDefinitions = ButtonEnum.YesNo
             });
-            var result = await window.Show();
+            var result = await window.ShowAsync();
             if (result == ButtonResult.Yes)
                 _window.Close();
         }
@@ -652,15 +647,15 @@ namespace LacmusApp.Avalonia.ViewModels
                                     msg =
                                         $"Найдена новая версия приложения Lacmus: {release.TagName}.\nПожалуйста обнвите ваше приложение.\nПерейти к загрузке новой версии?";
                             
-                                var msgbox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                                var msgbox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                                 {
                                     ButtonDefinitions = ButtonEnum.YesNo,
                                     ContentTitle = "Update",
                                     ContentMessage = msg,
-                                    Icon = MessageBox.Avalonia.Enums.Icon.Info,
+                                    Icon = MsBox.Avalonia.Enums.Icon.Info,
                                     ShowInCenter = true
                                 });
-                                var result = await msgbox.Show();
+                                var result = await msgbox.ShowAsync();
                                 if (result == ButtonResult.Yes)
                                 {
                                     OpenUrl("https://github.com/lacmus-foundation/lacmus-app/releases/latest");
@@ -685,15 +680,15 @@ namespace LacmusApp.Avalonia.ViewModels
             var msg = "To apply settings you need to restart application.";
             if (LocalizationContext.Language == Language.Russian)
                 msg = "Чтобы применить настройки необходим перезапуск программы.";
-            var msgbox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+            var msgbox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {
                 ButtonDefinitions = ButtonEnum.Ok,
                 ContentTitle = "Need to restart",
                 ContentMessage = msg,
-                Icon = MessageBox.Avalonia.Enums.Icon.Info,
+                Icon = MsBox.Avalonia.Enums.Icon.Info,
                 ShowInCenter = true
             });
-            var result = await msgbox.Show();
+            var result = await msgbox.ShowAsync();
             Environment.Exit(0);
         }
     }

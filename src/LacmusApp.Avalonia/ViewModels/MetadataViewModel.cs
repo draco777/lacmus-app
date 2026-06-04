@@ -7,12 +7,13 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using Avalonia.Skia;
 using DynamicData;
 using LacmusApp.Avalonia.Services;
 using LacmusApp.Image.Models;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using ReactiveUI.Validation.Extensions;
 using ReactiveUI.Validation.Helpers;
 using Serilog;
@@ -22,16 +23,16 @@ using SkiaSharp.QrCode;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class MetadataViewModel : ReactiveValidationObject
+    public partial class MetadataViewModel : ReactiveValidationObject
     {
         private SourceList<ExifData> _metaDataList { get; set; } = new SourceList<ExifData>();
         private ReadOnlyObservableCollection<ExifData> _metaDataCollection;
         public ReadOnlyObservableCollection<ExifData> MetaDataCollection => _metaDataCollection;
-        [Reactive] public string Latitude { get; set; } = "N/A";
-        [Reactive] public string Longitude { get; set; } = "N/A";
-        [Reactive] public string Altitude { get; set; } = "N/A";
-        [Reactive] public ImageBrush QrImage { get; set; }
-        [Reactive] public LocalizationContext LocalizationContext { get; set; }
+        [Reactive] private string _latitude = "N/A";
+        [Reactive] private string _longitude = "N/A";
+        [Reactive] private string _altitude = "N/A";
+        [Reactive] private ImageBrush _qrImage;
+        [Reactive] private LocalizationContext _localizationContext;
         public MetadataViewModel(Window window, PhotoViewModel photoViewModel, LocalizationContext localizationContext)
         {
             Latitude = $"{photoViewModel.Latitude}";
@@ -133,9 +134,10 @@ namespace LacmusApp.Avalonia.ViewModels
                     var skBitmap = SKBitmap.FromImage(image);
                     var bitmap = new Bitmap(
                         skBitmap.ColorType.ToPixelFormat(),
+                        skBitmap.AlphaType == SKAlphaType.Opaque ? AlphaFormat.Opaque : AlphaFormat.Premul,
                         skBitmap.GetPixels(),
-                        new PixelSize(skBitmap.Width, skBitmap.Height), 
-                        SkiaPlatform.DefaultDpi, 
+                        new PixelSize(skBitmap.Width, skBitmap.Height),
+                        SkiaPlatform.DefaultDpi,
                         skBitmap.RowBytes);
                     QrImage = new ImageBrush(bitmap);
                 }

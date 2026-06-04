@@ -6,7 +6,7 @@ using ReactiveUI;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class MetadataWindow : ReactiveWindow<MetadataViewModel>
+    public partial class MetadataWindow : ReactiveWindow<MetadataViewModel>
     {
         public MetadataWindow(ThemeManager themeManager)
         {

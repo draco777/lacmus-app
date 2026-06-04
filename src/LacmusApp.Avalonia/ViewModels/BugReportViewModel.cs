@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 using Avalonia.Controls;
 using LacmusApp.Avalonia.Services;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using Serilog;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class BugReportViewModel : ReactiveObject
+    public partial class BugReportViewModel : ReactiveObject
     {
         public BugReportViewModel(Window window, LocalizationContext localizationContext)
         {
@@ -18,7 +18,7 @@ namespace LacmusApp.Avalonia.ViewModels
             OpenFalseNegativeCommand = ReactiveCommand.Create(OpenFalseNegative);
             OpenFalsePositiveCommand  = ReactiveCommand.Create(OpenFalsePositive);
         }
-        [Reactive] public LocalizationContext LocalizationContext { get; set; }
+        [Reactive] private LocalizationContext _localizationContext;
         public ReactiveCommand<Unit, Unit> OpenFalseNegativeCommand { get; set; }
         public ReactiveCommand<Unit, Unit> OpenFalsePositiveCommand { get; set; }
         

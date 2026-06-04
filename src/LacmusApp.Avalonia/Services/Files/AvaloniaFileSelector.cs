@@ -13,23 +13,20 @@ namespace LacmusApp.Avalonia.Services.Files
 
         public AvaloniaFileSelector(Window window) => _window = window;
 
-        public async Task<string> SelectFile(OpenFileDialog fileDialog = null)
+        public async Task<string> SelectFile(string title = null)
         {
-            fileDialog ??= new OpenFileDialog();
-            fileDialog.AllowMultiple = false;
-            var files = await fileDialog.ShowAsync(_window);
+            var files = await StorageDialog.PickFilesAsync(title ?? "Select file", allowMultiple: false, window: _window);
             var path = files.First();
-            
+
             var attributes = File.GetAttributes(path);
             var isFolder = attributes.HasFlag(FileAttributes.Directory);
             if (isFolder) throw new Exception("Folders are not supported.");
             return path;
         }
 
-        public async Task<string> SelectDir(OpenFolderDialog folderDialog)
+        public async Task<string> SelectDir(string title = null)
         {
-            folderDialog ??= new OpenFolderDialog();
-            var path = await folderDialog.ShowAsync(_window);
+            var path = await StorageDialog.PickFolderAsync(title ?? "Select folder", _window);
 
             var attributes = File.GetAttributes(path);
             var isFolder = attributes.HasFlag(FileAttributes.Directory);
@@ -37,27 +34,22 @@ namespace LacmusApp.Avalonia.Services.Files
             return path;
         }
 
-        public async Task<IEnumerable<string>> SelectFiles(OpenFileDialog fileDialog = null)
+        public async Task<IEnumerable<string>> SelectFiles(string title = null)
         {
-            fileDialog ??= new OpenFileDialog();
-            fileDialog.AllowMultiple = true;
-            var files = await fileDialog.ShowAsync(_window);
+            var files = await StorageDialog.PickFilesAsync(title ?? "Select files", allowMultiple: true, window: _window);
             return files.Where(x => File.GetAttributes(x).HasFlag(FileAttributes.Directory));
         }
 
-        public async Task<IEnumerable<string>> SelectAllFilesFromDir(OpenFolderDialog fileDialog = null, bool isRecursive = false)
+        public async Task<IEnumerable<string>> SelectAllFilesFromDir(string title = null, bool isRecursive = false)
         {
-            fileDialog ??= new OpenFolderDialog();
+            var dirPath = await StorageDialog.PickFolderAsync(title ?? "Select folder", _window);
 
-            var dirPath = await fileDialog.ShowAsync(_window);
-            
-            if (!Directory.Exists(dirPath))
+            if (string.IsNullOrEmpty(dirPath) || !Directory.Exists(dirPath))
                 return Enumerable.Empty<string>();
-            
-            var files = GetFilesFromDir(dirPath, isRecursive);
-            return files;
+
+            return GetFilesFromDir(dirPath, isRecursive);
         }
-        
+
         private static IEnumerable<string> GetFilesFromDir(string dirPath, bool isRecursive)
         {
             return Directory.GetFiles(dirPath, "*.*",

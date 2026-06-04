@@ -43,7 +43,7 @@
             <ListBox Grid.Row="1"
                      Name="RemotePluginsList"
                      x:Name="RemotePluginsList"
-                     Items="{Binding LocalPluginRepository.Plugins}"
+                     ItemsSource="{Binding LocalPluginRepository.Plugins}"
                      SelectionMode="Single">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

@@ -21,6 +21,7 @@ namespace LacmusApp.Avalonia
             Console.WriteLine("------------------------------------");
             //Resources.Console.Culture = new CultureInfo("ru");
             //Console.WriteLine(Resources.Console.Greeting);
+            IconProvider.Current.Register<FontAwesomeIconProvider>();
             try
             {
                 BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
@@ -53,12 +54,9 @@ namespace LacmusApp.Avalonia
 
             return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .With(new Win32PlatformOptions {EnableMultitouch = true, AllowEglInitialization = true})
                 .With(new SkiaOptions{ MaxGpuResourceSizeBytes = 1024 * 1024 * 80})
                 .UseReactiveUI()
-                .LogToTrace()
-                .WithIcons(container => container
-                    .Register<FontAwesomeIconProvider>());
+                .LogToTrace();
         }
         
         /*

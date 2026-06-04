@@ -1,234 +1,234 @@
 using System;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using LacmusApp.Appearance.Enums;
 
 namespace LacmusApp.Avalonia.Services
 {
-    public class LocalizationContext : ReactiveObject
+    public partial class LocalizationContext : ReactiveObject
     {
-        [Reactive] public Language Language {get; set;}
+        [Reactive] private Language _language;
 
         #region STRINGS FOR LOCALIZING MAIN WINDOW
         private string _file;
-        [Reactive] public string File 
+        public string File 
         {
             get { return _file; }
             set { this.RaiseAndSetIfChanged(ref _file, value); }
         }
         private string _openDirectory;
-        [Reactive] public string OpenDirectory
+        public string OpenDirectory
         {
             get { return _openDirectory; }
             set { this.RaiseAndSetIfChanged(ref _openDirectory, value); }
         }
         private string _importAllFromXml;
-        [Reactive] public string ImportAllFromXml
+        public string ImportAllFromXml
         {
             get { return _importAllFromXml; }
             set { this.RaiseAndSetIfChanged(ref _importAllFromXml, value); }
         }
         private string _settings;
-        [Reactive] public string Settings
+        public string Settings
         {
             get { return _settings; }
             set { this.RaiseAndSetIfChanged(ref _settings, value); }
         }
         private string _log;
-        [Reactive] public string Log
+        public string Log
         {
             get { return _log; }
             set { this.RaiseAndSetIfChanged(ref _log, value); }
         }
         private string _exit;
-        [Reactive] public string Exit
+        public string Exit
         {
             get { return _exit; }
             set { this.RaiseAndSetIfChanged(ref _exit, value); }
         }
         private string _model;
-        [Reactive] public string Model
+        public string Model
         {
             get { return _model; }
             set { this.RaiseAndSetIfChanged(ref _model, value); }
         }
         private string _loadModel;
-        [Reactive] public string LoadModel
+        public string LoadModel
         {
             get { return _loadModel; }
             set { this.RaiseAndSetIfChanged(ref _loadModel, value); }
         }
         private string _updateModel;
-        [Reactive] public string UpdateModel
+        public string UpdateModel
         {
             get { return _updateModel; }
             set { this.RaiseAndSetIfChanged(ref _updateModel, value); }
         }
         private string _modelManager;
-        [Reactive] public string ModelManager
+        public string ModelManager
         {
             get { return _modelManager; }
             set { this.RaiseAndSetIfChanged(ref _modelManager, value); }
         }
         private string _bugReport;
-        [Reactive] public string BugReport
+        public string BugReport
         {
             get { return _bugReport; }
             set { this.RaiseAndSetIfChanged(ref _bugReport, value); }
         }
         private string _image;
-        [Reactive] public string Image
+        public string Image
         {
             get { return _image; }
             set { this.RaiseAndSetIfChanged(ref _image, value); }
         }
         private string _predictAll;
-        [Reactive] public string PredictAll
+        public string PredictAll
         {
             get { return _predictAll; }
             set { this.RaiseAndSetIfChanged(ref _predictAll, value); }
         }
         private string _increase;
-        [Reactive] public string Increase
+        public string Increase
         {
             get { return _increase; }
             set { this.RaiseAndSetIfChanged(ref _increase, value); }
         }
         private string _shrink;
-        [Reactive] public string Shrink
+        public string Shrink
         {
             get { return _shrink; }
             set { this.RaiseAndSetIfChanged(ref _shrink, value); }
         }
         private string _moveTo;
-        [Reactive] public string MoveTo
+        public string MoveTo
         {
             get { return _moveTo; }
             set { this.RaiseAndSetIfChanged(ref _moveTo, value); }
         }
         private string _up;
-        [Reactive] public string Up
+        public string Up
         {
             get { return _up; }
             set { this.RaiseAndSetIfChanged(ref _up, value); }
         }
         private string _down;
-        [Reactive] public string Down
+        public string Down
         {
             get { return _down; }
             set { this.RaiseAndSetIfChanged(ref _down, value); }
         }
         private string _left;
-        [Reactive] public string Left
+        public string Left
         {
             get { return _left; }
             set { this.RaiseAndSetIfChanged(ref _left, value); }
         }
         private string _right;
-        [Reactive] public string Right
+        public string Right
         {
             get { return _right; }
             set { this.RaiseAndSetIfChanged(ref _right, value); }
         }
         private string _reset;
-        [Reactive] public string Reset
+        public string Reset
         {
             get { return _reset; }
             set { this.RaiseAndSetIfChanged(ref _reset, value); }
         }
         private string _next;
-        [Reactive] public string Next
+        public string Next
         {
             get { return _next; }
             set { this.RaiseAndSetIfChanged(ref _next, value); }
         }
         private string _previous;
-        [Reactive] public string Previous
+        public string Previous
         {
             get { return _previous; }
             set { this.RaiseAndSetIfChanged(ref _previous, value); }
         }
         private string _help;
-        [Reactive] public string Help
+        public string Help
         {
             get { return _help; }
             set { this.RaiseAndSetIfChanged(ref _help, value); }
         }
         private string _openUserGuide;
-        [Reactive] public string OpenUserGuide
+        public string OpenUserGuide
         {
             get { return _openUserGuide; }
             set { this.RaiseAndSetIfChanged(ref _openUserGuide, value); }
         }
         private string _about;
-        [Reactive] public string About
+        public string About
         {
             get { return _about; }
             set { this.RaiseAndSetIfChanged(ref _about, value); }
         }
         private string _saveAll;
-        [Reactive] public string SaveAll
+        public string SaveAll
         {
             get { return _saveAll; }
             set { this.RaiseAndSetIfChanged(ref _saveAll, value); }
         }
         private string _showGeoPosition;
-        [Reactive] public string ShowGeoPosition
+        public string ShowGeoPosition
         {
             get { return _showGeoPosition; }
             set { this.RaiseAndSetIfChanged(ref _showGeoPosition, value); }
         }
         private string _selectLanguage;
-        [Reactive] public string OsErrorMesageGPU
+        public string OsErrorMesageGPU
         {
             get { return _selectLanguage; }
             set { this.RaiseAndSetIfChanged(ref _selectLanguage, value); }
         }
          private string _saveAs;
-        [Reactive] public string SaveAs
+        public string SaveAs
         {
             get { return _saveAs; }
             set { this.RaiseAndSetIfChanged(ref _saveAs, value); }
         }
         private string _allPhotos;
-        [Reactive] public string AllPhotos
+        public string AllPhotos
         {
             get { return _allPhotos; }
             set { this.RaiseAndSetIfChanged(ref _allPhotos, value); }
         }
          private string _photosWithObject;
-        [Reactive] public string PhotosWithObject
+        public string PhotosWithObject
         {
             get { return _photosWithObject; }
             set { this.RaiseAndSetIfChanged(ref _photosWithObject, value); }
         }
          private string _favoritePhotos;
-        [Reactive] public string FavoritePhotos
+        public string FavoritePhotos
         {
             get { return _favoritePhotos; }
             set { this.RaiseAndSetIfChanged(ref _favoritePhotos, value); }
         }
          private string _wizard;
-        [Reactive] public string Wizard
+        public string Wizard
         {
             get { return _wizard; }
             set { this.RaiseAndSetIfChanged(ref _wizard, value); }
         }
          private string _border;
-        [Reactive] public string Border
+        public string Border
         {
             get { return _border; }
             set { this.RaiseAndSetIfChanged(ref _border, value); }
         }
         private string _favoritesStateString;
-        [Reactive] public string FavoritesStateString
+        public string FavoritesStateString
         {
             get { return _favoritesStateString; }
             set { this.RaiseAndSetIfChanged(ref _favoritesStateString, value); }
         }
         
         private string _checkUpdate;
-        [Reactive] public string CheckUpdate
+        public string CheckUpdate
         {
             get { return _checkUpdate; }
             set { this.RaiseAndSetIfChanged(ref _checkUpdate, value); }
@@ -238,56 +238,56 @@ namespace LacmusApp.Avalonia.Services
         #region ABOUT WINDOW
 
         private string _aboutAppName;
-        [Reactive] public string AboutAppName
+        public string AboutAppName
         {
             get { return _aboutAppName; }
             set { this.RaiseAndSetIfChanged(ref _aboutAppName, value); }
         }
         
         private string _aboutVersion;
-        [Reactive] public string AboutVersion
+        public string AboutVersion
         {
             get { return _aboutVersion; }
             set { this.RaiseAndSetIfChanged(ref _aboutVersion, value); }
         }
         
         private string _aboutGintubPage;
-        [Reactive] public string AboutGintubPage
+        public string AboutGintubPage
         {
             get { return _aboutGintubPage; }
             set { this.RaiseAndSetIfChanged(ref _aboutGintubPage, value); }
         }
         
         private string _aboutPoweredBy;
-        [Reactive] public string AboutPoweredBy
+        public string AboutPoweredBy
         {
             get { return _aboutPoweredBy; }
             set { this.RaiseAndSetIfChanged(ref _aboutPoweredBy, value); }
         }
         
         private string _aboutLicense;
-        [Reactive] public string AboutLicense
+        public string AboutLicense
         {
             get { return _aboutLicense; }
             set { this.RaiseAndSetIfChanged(ref _aboutLicense, value); }
         }
         
         private string _aboutLicenseButton;
-        [Reactive] public string AboutLicenseButton
+        public string AboutLicenseButton
         {
             get { return _aboutLicenseButton; }
             set { this.RaiseAndSetIfChanged(ref _aboutLicenseButton, value); }
         }
         
         private string _aboutGinhubButton;
-        [Reactive] public string AboutGinhubButton
+        public string AboutGinhubButton
         {
             get { return _aboutGinhubButton; }
             set { this.RaiseAndSetIfChanged(ref _aboutGinhubButton, value); }
         }
         
         private string _aboutVisitWebSiteButton;
-        [Reactive] public string AboutVisitWebSiteButton
+        public string AboutVisitWebSiteButton
         {
             get { return _aboutVisitWebSiteButton; }
             set { this.RaiseAndSetIfChanged(ref _aboutVisitWebSiteButton, value); }
@@ -298,84 +298,84 @@ namespace LacmusApp.Avalonia.Services
         #region WIZARD WINDOW
         
         private string _wizardHeader;
-        [Reactive] public string WizardHeader
+        public string WizardHeader
         {
             get { return _wizardHeader; }
             set { this.RaiseAndSetIfChanged(ref _wizardHeader, value); }
         }
         
         private string _wizardDescription1;
-        [Reactive] public string WizardDescription1
+        public string WizardDescription1
         {
             get { return _wizardDescription1; }
             set { this.RaiseAndSetIfChanged(ref _wizardDescription1, value); }
         }
         
         private string _wizardDescription2;
-        [Reactive] public string WizardDescription2
+        public string WizardDescription2
         {
             get { return _wizardDescription2; }
             set { this.RaiseAndSetIfChanged(ref _wizardDescription2, value); }
         }
         
         private string _wizardDescription3;
-        [Reactive] public string WizardDescription3
+        public string WizardDescription3
         {
             get { return _wizardDescription3; }
             set { this.RaiseAndSetIfChanged(ref _wizardDescription3, value); }
         }
         
         private string _wizardDescription4;
-        [Reactive] public string WizardDescription4
+        public string WizardDescription4
         {
             get { return _wizardDescription4; }
             set { this.RaiseAndSetIfChanged(ref _wizardDescription4, value); }
         }
         
         private string _wizardDescription5;
-        [Reactive] public string WizardDescription5
+        public string WizardDescription5
         {
             get { return _wizardDescription5; }
             set { this.RaiseAndSetIfChanged(ref _wizardDescription5, value); }
         }
         
         private string _wizardDescription6;
-        [Reactive] public string WizardDescription6
+        public string WizardDescription6
         {
             get { return _wizardDescription6; }
             set { this.RaiseAndSetIfChanged(ref _wizardDescription6, value); }
         }
         
         private string _wizardBackButtonText;
-        [Reactive] public string WizardBackButtonText
+        public string WizardBackButtonText
         {
             get { return _wizardBackButtonText; }
             set { this.RaiseAndSetIfChanged(ref _wizardBackButtonText, value); }
         }
         
         private string _wizardNextButtonText;
-        [Reactive] public string WizardNextButtonText
+        public string WizardNextButtonText
         {
             get { return _wizardNextButtonText; }
             set { this.RaiseAndSetIfChanged(ref _wizardNextButtonText, value); }
         }
         
         private string _wizardPredictAllButtonText;
-        [Reactive] public string WizardPredictAllButtonText
+        public string WizardPredictAllButtonText
         {
             get { return _wizardPredictAllButtonText; }
             set { this.RaiseAndSetIfChanged(ref _wizardPredictAllButtonText, value); }
         }
         
         private string _wizardFinishButtonText;
-        [Reactive] public string WizardFinishButtonText
+        public string WizardFinishButtonText
         {
             get { return _wizardFinishButtonText; }
             set { this.RaiseAndSetIfChanged(ref _wizardFinishButtonText, value); }
         }
         
         private string _wizardRepeatButtonText;
-        [Reactive] public string WizardRepeatButtonText
+        public string WizardRepeatButtonText
         {
             get { return _wizardRepeatButtonText; }
             set { this.RaiseAndSetIfChanged(ref _wizardRepeatButtonText, value); }
@@ -384,56 +384,56 @@ namespace LacmusApp.Avalonia.Services
         #region PAGE 4
             
         private string _wizardFourthHeader;
-        [Reactive] public string WizardFourthHeader
+        public string WizardFourthHeader
         {
             get { return _wizardFourthHeader; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthHeader, value); }
         }
         
         private string _wizardFourthDescription;
-        [Reactive] public string WizardFourthDescription
+        public string WizardFourthDescription
         {
             get { return _wizardFourthDescription; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthDescription, value); }
         }
         
         private string _wizardFourthTotalStatus;
-        [Reactive] public string WizardFourthTotalStatus
+        public string WizardFourthTotalStatus
         {
             get { return _wizardFourthTotalStatus; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthTotalStatus, value); }
         }
         
         private string _wizardFourthLoadingPhotos;
-        [Reactive] public string WizardFourthLoadingPhotos
+        public string WizardFourthLoadingPhotos
         {
             get { return _wizardFourthLoadingPhotos; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthLoadingPhotos, value); }
         }
         
         private string _wizardFourthProcessingPhotos;
-        [Reactive] public string WizardFourthProcessingPhotos
+        public string WizardFourthProcessingPhotos
         {
             get { return _wizardFourthProcessingPhotos; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthProcessingPhotos, value); }
         }
         
         private string _wizardFourthSavingResults;
-        [Reactive] public string WizardFourthSavingResults
+        public string WizardFourthSavingResults
         {
             get { return _wizardFourthSavingResults; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthSavingResults, value); }
         }
         
         private string _wizardFourthStopButton;
-        [Reactive] public string WizardFourthStopButton
+        public string WizardFourthStopButton
         {
             get { return _wizardFourthStopButton; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthStopButton, value); }
         }
         
         private string _wizardFourthLogsExpander;
-        [Reactive] public string WizardFourthLogsExpander
+        public string WizardFourthLogsExpander
         {
             get { return _wizardFourthLogsExpander; }
             set { this.RaiseAndSetIfChanged(ref _wizardFourthLogsExpander, value); }
@@ -445,28 +445,28 @@ namespace LacmusApp.Avalonia.Services
         #region PAGE 1
             
         private string _wizardFirstHeader;
-        [Reactive] public string WizardFirstHeader
+        public string WizardFirstHeader
         {
             get { return _wizardFirstHeader; }
             set { this.RaiseAndSetIfChanged(ref _wizardFirstHeader, value); }
         }
         
         private string _wizardFirstDescription;
-        [Reactive] public string WizardFirstDescription
+        public string WizardFirstDescription
         {
             get { return _wizardFirstDescription; }
             set { this.RaiseAndSetIfChanged(ref _wizardFirstDescription, value); }
         }
         
         private string _wizardFirstInputWatermark;
-        [Reactive] public string WizardFirstInputWatermark
+        public string WizardFirstInputWatermark
         {
             get { return _wizardFirstInputWatermark; }
             set { this.RaiseAndSetIfChanged(ref _wizardFirstInputWatermark, value); }
         }
         
         private string _wizardFirstOpenPhotosButton;
-        [Reactive] public string WizardFirstOpenPhotosButton
+        public string WizardFirstOpenPhotosButton
         {
             get { return _wizardFirstOpenPhotosButton; }
             set { this.RaiseAndSetIfChanged(ref _wizardFirstOpenPhotosButton, value); }
@@ -477,35 +477,35 @@ namespace LacmusApp.Avalonia.Services
         #region PAGE 2
 
         private string _wizardSecondHeader;
-        [Reactive] public string WizardSecondHeader
+        public string WizardSecondHeader
         {
             get { return _wizardSecondHeader; }
             set { this.RaiseAndSetIfChanged(ref _wizardSecondHeader, value); }
         }
         
         private string _wizardSecondDescription1;
-        [Reactive] public string WizardSecondDescription1
+        public string WizardSecondDescription1
         {
             get { return _wizardSecondDescription1; }
             set { this.RaiseAndSetIfChanged(ref _wizardSecondDescription1, value); }
         }
         
         private string _wizardSecondDescription2;
-        [Reactive] public string WizardSecondDescription2
+        public string WizardSecondDescription2
         {
             get { return _wizardSecondDescription2; }
             set { this.RaiseAndSetIfChanged(ref _wizardSecondDescription2, value); }
         }
         
         private string _wizardSecondOutputWatermark;
-        [Reactive] public string WizardSecondOutputWatermark
+        public string WizardSecondOutputWatermark
         {
             get { return _wizardSecondOutputWatermark; }
             set { this.RaiseAndSetIfChanged(ref _wizardSecondOutputWatermark, value); }
         }
         
         private string _wizardSecondSavePhotosButton;
-        [Reactive] public string WizardSecondSavePhotosButton
+        public string WizardSecondSavePhotosButton
         {
             get { return _wizardSecondSavePhotosButton; }
             set { this.RaiseAndSetIfChanged(ref _wizardSecondSavePhotosButton, value); }
@@ -516,77 +516,77 @@ namespace LacmusApp.Avalonia.Services
         #region PAGE 3
         
         private string _wizardThirdHeader;
-        [Reactive] public string WizardThirdHeader
+        public string WizardThirdHeader
         {
             get { return _wizardThirdHeader; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdHeader, value); }
         }
         
         private string _wizardThirdDescription1;
-        [Reactive] public string WizardThirdDescription1
+        public string WizardThirdDescription1
         {
             get { return _wizardThirdDescription1; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdDescription1, value); }
         }
         
         private string _wizardThirdDescription2;
-        [Reactive] public string WizardThirdDescription2
+        public string WizardThirdDescription2
         {
             get { return _wizardThirdDescription2; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdDescription2, value); }
         }
         
         private string _wizardThirdDescription3;
-        [Reactive] public string WizardThirdDescription3
+        public string WizardThirdDescription3
         {
             get { return _wizardThirdDescription3; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdDescription3, value); }
         }
         
         private string _wizardThirdDescription4;
-        [Reactive] public string WizardThirdDescription4
+        public string WizardThirdDescription4
         {
             get { return _wizardThirdDescription4; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdDescription4, value); }
         }
         
         private string _wizardThirdModelRepository;
-        [Reactive] public string WizardThirdModelRepository
+        public string WizardThirdModelRepository
         {
             get { return _wizardThirdModelRepository; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdModelRepository, value); }
         }
         
         private string _wizardThirdModelType;
-        [Reactive] public string WizardThirdModelType
+        public string WizardThirdModelType
         {
             get { return _wizardThirdModelType; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdModelType, value); }
         }
         
         private string _wizardThirdModelVersion;
-        [Reactive] public string WizardThirdModelVersion
+        public string WizardThirdModelVersion
         {
             get { return _wizardThirdModelVersion; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdModelVersion, value); }
         }
         
         private string _wizardThirdModelStatus;
-        [Reactive] public string WizardThirdModelStatus
+        public string WizardThirdModelStatus
         {
             get { return _wizardThirdModelStatus; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdModelStatus, value); }
         }
         
         private string _wizardThirdModelManagerButton;
-        [Reactive] public string WizardThirdModelManagerButton
+        public string WizardThirdModelManagerButton
         {
             get { return _wizardThirdModelManagerButton; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdModelManagerButton, value); }
         }
         
         private string _wizardThirdModelStatusUpdateButton;
-        [Reactive] public string WizardThirdModelStatusUpdateButton
+        public string WizardThirdModelStatusUpdateButton
         {
             get { return _wizardThirdModelStatusUpdateButton; }
             set { this.RaiseAndSetIfChanged(ref _wizardThirdModelStatusUpdateButton, value); }
@@ -599,42 +599,42 @@ namespace LacmusApp.Avalonia.Services
         #region METADATA WINDOW
 
         private string _metadataHeader;
-        [Reactive] public string MetadataHeader
+        public string MetadataHeader
         {
             get { return _metadataHeader; }
             set { this.RaiseAndSetIfChanged(ref _metadataHeader, value); }
         }
         
         private string _metadataLatitude;
-        [Reactive] public string MetadataLatitude
+        public string MetadataLatitude
         {
             get { return _metadataLatitude; }
             set { this.RaiseAndSetIfChanged(ref _metadataLatitude, value); }
         }
         
         private string _metadataLongitude;
-        [Reactive] public string MetadataLongitude
+        public string MetadataLongitude
         {
             get { return _metadataLongitude; }
             set { this.RaiseAndSetIfChanged(ref _metadataLongitude, value); }
         }
         
         private string _metadataAltitude;
-        [Reactive] public string MetadataAltitude
+        public string MetadataAltitude
         {
             get { return _metadataAltitude; }
             set { this.RaiseAndSetIfChanged(ref _metadataAltitude, value); }
         }
         
         private string _metadataOpenWith;
-        [Reactive] public string MetadataOpenWith
+        public string MetadataOpenWith
         {
             get { return _metadataOpenWith; }
             set { this.RaiseAndSetIfChanged(ref _metadataOpenWith, value); }
         }
         
         private string _metadataAllMetadata;
-        [Reactive] public string MetadataAllMetadata
+        public string MetadataAllMetadata
         {
             get { return _metadataAllMetadata; }
             set { this.RaiseAndSetIfChanged(ref _metadataAllMetadata, value); }
@@ -644,131 +644,131 @@ namespace LacmusApp.Avalonia.Services
 
         #region MODEL MANAGER WINDOW
         private string _modelManagerName;
-        [Reactive] public string ModelManagerName
+        public string ModelManagerName
         {
             get { return _modelManagerName; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerName, value); }
         }
         private string _modelManagerAuthor;
-        [Reactive] public string ModelManagerAuthor
+        public string ModelManagerAuthor
         {
             get { return _modelManagerAuthor; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerAuthor, value); }
         }
         private string _modelManagerCompany;
-        [Reactive] public string ModelManagerCompany
+        public string ModelManagerCompany
         {
             get { return _modelManagerCompany; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerCompany, value); }
         }
         private string _modelManagerDescription;
-        [Reactive] public string ModelManagerDescription
+        public string ModelManagerDescription
         {
             get { return _modelManagerDescription; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerDescription, value); }
         }
         private string _modelManagerTag;
-        [Reactive] public string ModelManagerTag
+        public string ModelManagerTag
         {
             get { return _modelManagerTag; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerTag, value); }
         }
         private string _modelManagerVersion;
-        [Reactive] public string ModelManagerVersion
+        public string ModelManagerVersion
         {
             get { return _modelManagerVersion; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerVersion, value); }
         }
         private string _modelManagerSupportedOs;
-        [Reactive] public string ModelManagerSupportedOs
+        public string ModelManagerSupportedOs
         {
             get { return _modelManagerSupportedOs; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerSupportedOs, value); }
         }
         private string _modelManagerInferenceType;
-        [Reactive] public string ModelManagerInferenceType
+        public string ModelManagerInferenceType
         {
             get { return _modelManagerInferenceType; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerInferenceType, value); }
         }
         private string _modelManagerUrl;
-        [Reactive] public string ModelManagerUrl
+        public string ModelManagerUrl
         {
             get { return _modelManagerUrl; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerUrl, value); }
         }
         private string _modelManagerInstalledModels;
-        [Reactive] public string ModelManagerInstalledModels
+        public string ModelManagerInstalledModels
         {
             get { return _modelManagerInstalledModels; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerInstalledModels, value); }
         }
         
         private string _modelManagerAvailableModels;
-        [Reactive] public string ModelManagerAvailableModels
+        public string ModelManagerAvailableModels
         {
             get { return _modelManagerAvailableModels; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerAvailableModels, value); }
         }
         
         private string _modelManagerRefreshButton;
-        [Reactive] public string ModelManagerRefreshButton
+        public string ModelManagerRefreshButton
         {
             get { return _modelManagerRefreshButton; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerRefreshButton, value); }
         }
         
         private string _modelManagerRemoveSelectedButton;
-        [Reactive] public string ModelManagerRemoveSelectedButton
+        public string ModelManagerRemoveSelectedButton
         {
             get { return _modelManagerRemoveSelectedButton; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerRemoveSelectedButton, value); }
         }
         
         private string _modelManagerActivateSelectedButton;
-        [Reactive] public string ModelManagerActivateSelectedButton
+        public string ModelManagerActivateSelectedButton
         {
             get { return _modelManagerActivateSelectedButton; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerActivateSelectedButton, value); }
         }
         
         private string _modelManagerDownloadSelectedButton;
-        [Reactive] public string ModelManagerDownloadSelectedButton
+        public string ModelManagerDownloadSelectedButton
         {
             get { return _modelManagerDownloadSelectedButton; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerDownloadSelectedButton, value); }
         }
         
         private string _modelManagerApplyButton;
-        [Reactive] public string ModelManagerApplyButton
+        public string ModelManagerApplyButton
         {
             get { return _modelManagerApplyButton; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerApplyButton, value); }
         }
         
         private string _modelManagerManagerCloseButton;
-        [Reactive] public string ModelManagerCloseButton
+        public string ModelManagerCloseButton
         {
             get { return _modelManagerManagerCloseButton; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerManagerCloseButton, value); }
         }
         
         private string _modelManagerManagerRepositories;
-        [Reactive] public string ModelManagerRepositories
+        public string ModelManagerRepositories
         {
             get { return _modelManagerManagerRepositories; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerManagerRepositories, value); }
         }
         
         private string _modelManagerManagerRepositoryWatermark;
-        [Reactive] public string ModelManagerRepositoryWatermark
+        public string ModelManagerRepositoryWatermark
         {
             get { return _modelManagerManagerRepositoryWatermark; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerManagerRepositoryWatermark, value); }
         }
         
         private string _modelManagerManagerAddRepositoryButton;
-        [Reactive] public string ModelManagerAddRepositoryButton
+        public string ModelManagerAddRepositoryButton
         {
             get { return _modelManagerManagerAddRepositoryButton; }
             set { this.RaiseAndSetIfChanged(ref _modelManagerManagerAddRepositoryButton, value); }
@@ -779,56 +779,56 @@ namespace LacmusApp.Avalonia.Services
         #region SAVE AS WINDOW
 
         private string _saveAsOptionsToSave;
-        [Reactive] public string SaveAsOptionsToSave
+        public string SaveAsOptionsToSave
         {
             get { return _saveAsOptionsToSave; }
             set { this.RaiseAndSetIfChanged(ref _saveAsOptionsToSave, value); }
         }
         
         private string _saveAsTypesToSave;
-        [Reactive] public string SaveAsTypesToSave
+        public string SaveAsTypesToSave
         {
             get { return _saveAsTypesToSave; }
             set { this.RaiseAndSetIfChanged(ref _saveAsTypesToSave, value); }
         }
         
         private string _saveAsSourcePhotos;
-        [Reactive] public string SaveAsSourcePhotos
+        public string SaveAsSourcePhotos
         {
             get { return _saveAsSourcePhotos; }
             set { this.RaiseAndSetIfChanged(ref _saveAsSourcePhotos, value); }
         }
         
         private string _saveAsXmlAnnotations;
-        [Reactive] public string SaveAsXmlAnnotations
+        public string SaveAsXmlAnnotations
         {
             get { return _saveAsXmlAnnotations; }
             set { this.RaiseAndSetIfChanged(ref _saveAsXmlAnnotations, value); }
         }
         
         private string _saveAsDrawBbox;
-        [Reactive] public string SaveAsDrawBbox
+        public string SaveAsDrawBbox
         {
             get { return _saveAsDrawBbox; }
             set { this.RaiseAndSetIfChanged(ref _saveAsDrawBbox, value); }
         }
         
         private string _saveAsCrops;
-        [Reactive] public string SaveAsCrops
+        public string SaveAsCrops
         {
             get { return _saveAsCrops; }
             set { this.RaiseAndSetIfChanged(ref _saveAsCrops, value); }
         }
         
         private string _saveAsPosition;
-        [Reactive] public string SaveAsPosition
+        public string SaveAsPosition
         {
             get { return _saveAsCrops; }
             set { this.RaiseAndSetIfChanged(ref _saveAsCrops, value); }
         }
         
         private string _saveAsSelectPath;
-        [Reactive] public string SaveAsSelectPath
+        public string SaveAsSelectPath
         {
             get { return _saveAsSelectPath; }
             set { this.RaiseAndSetIfChanged(ref _saveAsSelectPath, value); }
@@ -839,63 +839,63 @@ namespace LacmusApp.Avalonia.Services
         #region SETTINGS
 
         private string _settingsGeneral;
-        [Reactive] public string SettingsGeneral
+        public string SettingsGeneral
         {
             get { return _settingsGeneral; }
             set { this.RaiseAndSetIfChanged(ref _settingsGeneral, value); }
         }
         
         private string _settingsLanguage;
-        [Reactive] public string SettingsLanguage
+        public string SettingsLanguage
         {
             get { return _settingsLanguage; }
             set { this.RaiseAndSetIfChanged(ref _settingsLanguage, value); }
         }
         
         private string _settingsTheme;
-        [Reactive] public string SettingsTheme
+        public string SettingsTheme
         {
             get { return _settingsTheme; }
             set { this.RaiseAndSetIfChanged(ref _settingsTheme, value); }
         }
         
         private string _settingsMlModel;
-        [Reactive] public string SettingsMlModel
+        public string SettingsMlModel
         {
             get { return _settingsMlModel; }
             set { this.RaiseAndSetIfChanged(ref _settingsMlModel, value); }
         }
         
         private string _settingsMlModelGeneral;
-        [Reactive] public string SettingsMlModelGeneral
+        public string SettingsMlModelGeneral
         {
             get { return _settingsMlModelGeneral; }
             set { this.RaiseAndSetIfChanged(ref _settingsMlModelGeneral, value); }
         }
         
         private string _settingsHost;
-        [Reactive] public string SettingsHost
+        public string SettingsHost
         {
             get { return _settingsHost; }
             set { this.RaiseAndSetIfChanged(ref _settingsHost, value); }
         }
         
         private string _settingsPort;
-        [Reactive] public string SettingsPort
+        public string SettingsPort
         {
             get { return _settingsPort; }
             set { this.RaiseAndSetIfChanged(ref _settingsPort, value); }
         }
         
         private string _settingsJWT;
-        [Reactive] public string SettingsJWT
+        public string SettingsJWT
         {
             get { return _settingsJWT; }
             set { this.RaiseAndSetIfChanged(ref _settingsJWT, value); }
         }
         
         private string _settingsBatchSize;
-        [Reactive] public string SettingsBatchSize
+        public string SettingsBatchSize
         {
             get { return _settingsBatchSize; }
             set { this.RaiseAndSetIfChanged(ref _settingsBatchSize, value); }
@@ -906,19 +906,19 @@ namespace LacmusApp.Avalonia.Services
         #region BUG REPORT WINDOW
 
         private string _labelingWindowCapture;
-        [Reactive] public string LabelingWindowCapture
+        public string LabelingWindowCapture
         {
             get { return _labelingWindowCapture; }
             set { this.RaiseAndSetIfChanged(ref _labelingWindowCapture, value); }
         }
         private string _labelingWindowFalsePositive;
-        [Reactive] public string LabelingWindowFalsePositive
+        public string LabelingWindowFalsePositive
         {
             get { return _labelingWindowFalsePositive; }
             set { this.RaiseAndSetIfChanged(ref _labelingWindowFalsePositive, value); }
         }
         private string _labelingWindowFalseNegative;
-        [Reactive] public string LabelingWindowFalseNegative
+        public string LabelingWindowFalseNegative
         {
             get { return _labelingWindowFalseNegative; }
             set { this.RaiseAndSetIfChanged(ref _labelingWindowFalseNegative, value); }

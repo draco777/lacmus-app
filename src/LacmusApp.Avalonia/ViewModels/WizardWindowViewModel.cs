@@ -7,7 +7,7 @@ using System.Runtime.Intrinsics.X86;
 using Avalonia.Controls;
 using DynamicData;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using LacmusApp.Avalonia.Managers;
 using LacmusApp.Avalonia.Services;
 using LacmusApp.Avalonia.Views;
@@ -16,7 +16,7 @@ using Serilog;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class WizardWindowViewModel : ReactiveObject, IScreen
+    public partial class WizardWindowViewModel : ReactiveObject, IScreen
     {
         private readonly Window _window;
         private readonly RoutingState _router;
@@ -32,9 +32,9 @@ namespace LacmusApp.Avalonia.ViewModels
         // The command that navigates a user back.
         public ReactiveCommand<Unit, Unit> GoBack { get; }
 
-        [Reactive] public string NextButtonText { get; private set; } = "Next";
-        [Reactive] public string BackButtonText { get; private set; } = "Back";
-        [Reactive] public LocalizationContext LocalizationContext { get; set; }
+        [Reactive] private string _nextButtonText = "Next";
+        [Reactive] private string _backButtonText = "Back";
+        [Reactive] private LocalizationContext _localizationContext;
 
         public WizardWindowViewModel(WizardWindow window,
             SettingsViewModel settingsViewModel,

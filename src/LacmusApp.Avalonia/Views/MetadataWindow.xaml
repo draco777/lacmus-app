@@ -80,7 +80,7 @@
                                 Command="{Binding OpenOSMCommand}"/>
                     </Grid>
                     <Expander Grid.Row="6" Header="{Binding LocalizationContext.MetadataAllMetadata}" IsExpanded="False" Margin="0 5 0 0">
-                        <DataGrid Items="{Binding MetaDataCollection}">
+                        <DataGrid ItemsSource="{Binding MetaDataCollection}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Group" Binding="{Binding Group}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Nag Name" Binding="{Binding Key}"></DataGridTextColumn>

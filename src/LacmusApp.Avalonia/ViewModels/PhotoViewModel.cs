@@ -6,7 +6,6 @@ using Avalonia.Media;
 using LacmusApp.Avalonia.Models;
 using ReactiveUI;
 using LacmusApp.Image.Models;
-using ReactiveUI.Fody.Helpers;
 
 namespace LacmusApp.Avalonia.ViewModels
 {

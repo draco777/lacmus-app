@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using Avalonia.Skia;
 using Avalonia.Threading;
 using LacmusApp.Image.Enums;
@@ -42,16 +43,18 @@ namespace LacmusApp.Avalonia.Services.IO
                         src.ScalePixels(resized, SKFilterQuality.Low);
                         var bitmap = new Bitmap(
                             resized.ColorType.ToPixelFormat(),
+                            resized.AlphaType == SKAlphaType.Opaque ? AlphaFormat.Opaque : AlphaFormat.Premul,
                             resized.GetPixels(),
-                            new PixelSize(resized.Width, resized.Height), 
-                            SkiaPlatform.DefaultDpi, 
+                            new PixelSize(resized.Width, resized.Height),
+                            SkiaPlatform.DefaultDpi,
                             resized.RowBytes);
                         var imageBrush = await Dispatcher.UIThread.InvokeAsync(() => new ImageBrush(bitmap));
                         return (imageBrush, height, width);
                     }
                 case LoadType.Full:
-                    var brush = await Dispatcher.UIThread.InvokeAsync(() => new ImageBrush(new Bitmap(stream)));
-                    return (brush, brush.Source.PixelSize.Height, brush.Source.PixelSize.Width);
+                    var fullBitmap = new Bitmap(stream);
+                    var brush = await Dispatcher.UIThread.InvokeAsync(() => new ImageBrush(fullBitmap));
+                    return (brush, fullBitmap.PixelSize.Height, fullBitmap.PixelSize.Width);
                 default:
                     throw new Exception($"Invalid LoadType {_loadType.ToString()}");
             }

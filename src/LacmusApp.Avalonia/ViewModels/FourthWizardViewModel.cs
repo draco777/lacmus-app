@@ -9,7 +9,7 @@ using Avalonia.Controls;
 using Avalonia.Threading;
 using DynamicData;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using LacmusApp.Avalonia.Managers;
 using LacmusApp.Avalonia.Models;
 using LacmusApp.Avalonia.Services;
@@ -27,7 +27,7 @@ using Object = LacmusApp.Image.Models.Object;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class FourthWizardViewModel : ReactiveObject, IRoutableViewModel
+    public partial class FourthWizardViewModel : ReactiveObject, IRoutableViewModel
     {
         private readonly ApplicationStatusManager _applicationStatusManager;
         private readonly SourceList<PhotoViewModel> _photos;
@@ -35,14 +35,14 @@ namespace LacmusApp.Avalonia.ViewModels
         private int _selectedIndex;
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; } = Guid.NewGuid().ToString().Substring(0, 5);
-        [Reactive] public LocalizationContext LocalizationContext { get; set; }
-        [Reactive] public double InputProgress { get; set; }
-        [Reactive] public double PredictProgress { get; set; }
-        [Reactive] public double OutputProgress { get; set; }
-        [Reactive] public string InputTextProgress { get; set; } = "waiting...";
-        [Reactive] public string PredictTextProgress { get; set; } = "waiting...";
-        [Reactive] public string OutputTextProgress { get; set; } = "waiting...";
-        [Reactive] public string Status { get; set; } = "";
+        [Reactive] private LocalizationContext _localizationContext;
+        [Reactive] private double _inputProgress;
+        [Reactive] private double _predictProgress;
+        [Reactive] private double _outputProgress;
+        [Reactive] private string _inputTextProgress = "waiting...";
+        [Reactive] private string _predictTextProgress = "waiting...";
+        [Reactive] private string _outputTextProgress = "waiting...";
+        [Reactive] private string _status = "";
         public ReactiveCommand<Unit, Unit> StopCommand { get; }
 
         public FourthWizardViewModel(IScreen screen, 

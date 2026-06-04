@@ -6,7 +6,7 @@ using ReactiveUI;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class BugReportWindow : ReactiveWindow<BugReportViewModel>
+    public partial class BugReportWindow : ReactiveWindow<BugReportViewModel>
     {
         public BugReportWindow(ThemeManager themeManager)
         {

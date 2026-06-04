@@ -4,28 +4,29 @@ using System.Reactive;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using LacmusApp.Avalonia.Services;
+using LacmusApp.Avalonia.Services.Files;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using ReactiveUI.Validation.Extensions;
 using ReactiveUI.Validation.Helpers;
 using Serilog;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class SecondWizardViewModel : ReactiveValidationObject, IRoutableViewModel
+    public partial class SecondWizardViewModel : ReactiveValidationObject, IRoutableViewModel
     {
         public IScreen HostScreen { get; }
         public string UrlPathSegment { get; } = Guid.NewGuid().ToString().Substring(0, 5);
         public ReactiveCommand<Unit, Unit> SavePhotos { get; }
 
-        [Reactive] public string OutputPath { get; set; }
-        [Reactive] public int FilterIndex { get; set; } = 0;
-        [Reactive] public bool IsSaveCrop { get; set; }
-        [Reactive] public bool IsSaveXml { get; set; }
-        [Reactive] public bool IsSaveImage { get; set; }
-        [Reactive] public bool IsSaveDrawImage { get; set; }
-        [Reactive] public bool IsSaveGeoPosition { get; set; }
-        [Reactive] public LocalizationContext LocalizationContext { get; set; }
+        [Reactive] private string _outputPath;
+        [Reactive] private int _filterIndex = 0;
+        [Reactive] private bool _isSaveCrop;
+        [Reactive] private bool _isSaveXml;
+        [Reactive] private bool _isSaveImage;
+        [Reactive] private bool _isSaveDrawImage;
+        [Reactive] private bool _isSaveGeoPosition;
+        [Reactive] private LocalizationContext _localizationContext;
 
         public SecondWizardViewModel(IScreen screen, LocalizationContext localizationContext)
         {
@@ -44,13 +45,9 @@ namespace LacmusApp.Avalonia.ViewModels
         {
             try
             {
-                var dig = new OpenFolderDialog()
-                {
-                    //TODO: Multi language support
-                    Title = "Select folder to save"
-                };
-                var dirPath = await dig.ShowAsync(new Window());
-                OutputPath = dirPath;
+                var dirPath = await StorageDialog.PickFolderAsync("Select folder to save");
+                if (!string.IsNullOrEmpty(dirPath))
+                    OutputPath = dirPath;
             }
             catch (Exception e)
             {

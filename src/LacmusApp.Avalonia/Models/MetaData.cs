@@ -1,13 +1,13 @@
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 
 namespace LacmusApp.Avalonia.Models
 {
-    public class MetaData
+    public partial class MetaData : ReactiveObject
     {
-        [Reactive] public string Group { get; set; }
-        [Reactive] public string TagName { get; set; }
-        [Reactive] public string Description { get; set; }
+        [Reactive] private string _group;
+        [Reactive] private string _tagName;
+        [Reactive] private string _description;
 
         public MetaData(string group, string tagName, string description)
         {

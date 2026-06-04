@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace LacmusApp.Avalonia.Pages
 {
-    public class PluginInfoPage : UserControl
+    public partial class PluginInfoPage : UserControl
     {
         public PluginInfoPage()
         {

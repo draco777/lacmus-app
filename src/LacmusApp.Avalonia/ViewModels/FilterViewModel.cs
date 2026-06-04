@@ -1,11 +1,11 @@
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 
 namespace LacmusApp.Avalonia.ViewModels
 {
-    public class FilterViewModel : ReactiveObject
+    public partial class FilterViewModel : ReactiveObject
     {
-        [Reactive] public int FilterIndex { get; set; } = 0;
-        [Reactive] public int CurrentPage { get; set; } = 0;
+        [Reactive] private int _filterIndex = 0;
+        [Reactive] private int _currentPage = 0;
     }
 }

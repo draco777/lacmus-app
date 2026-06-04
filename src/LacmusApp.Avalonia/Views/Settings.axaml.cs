@@ -10,7 +10,7 @@ using ReactiveUI;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class Settings : ReactiveWindow<ISettingsViewModel>
+    public partial class Settings : ReactiveWindow<ISettingsViewModel>
     {
         public Settings()
         {

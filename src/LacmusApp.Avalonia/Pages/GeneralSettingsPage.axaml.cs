@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace LacmusApp.Avalonia.Pages
 {
-    public class GeneralSettingsPage : UserControl
+    public partial class GeneralSettingsPage : UserControl
     {
         public GeneralSettingsPage()
         {

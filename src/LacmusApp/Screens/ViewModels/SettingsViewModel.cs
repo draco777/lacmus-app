@@ -11,13 +11,13 @@ using LacmusApp.Plugin.Models;
 using LacmusApp.Plugin.ViewModels;
 using LacmusApp.Screens.Interfaces;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using Serilog;
 
 namespace LacmusApp.Screens.ViewModels
 {
     //TODO: add error message
-    public class SettingsViewModel : ReactiveObject, ISettingsViewModel
+    public partial class SettingsViewModel : ReactiveObject, ISettingsViewModel
     {
         private readonly ObservableAsPropertyHelper<bool> _isNeedRestart;
         public SettingsViewModel(
@@ -119,11 +119,11 @@ namespace LacmusApp.Screens.ViewModels
         public ReactiveCommand<Unit, Config> Cancel { get; }
         public ILocalPluginRepositoryViewModel LocalPluginRepository { get; }
         public IRemotePluginRepositoryViewModel RemotePluginRepository { get; }
-        [Reactive] public IPluginViewModel Plugin { get; set; }
+        [Reactive] private IPluginViewModel _plugin;
         public float PredictionThreshold { get; set; }
         public string PluginsRepositoryUrl { get; set; }
-        [Reactive] public Language Language { get; set; }
-        [Reactive] public Theme Theme { get; set; }
+        [Reactive] private Language _language;
+        [Reactive] private Theme _theme;
         public BoundingBoxColour BoundingBoxColour { get; set; }
         public IEnumerable<Language> SupportedLanguages => new []
         {

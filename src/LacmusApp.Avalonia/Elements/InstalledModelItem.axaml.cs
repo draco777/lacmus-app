@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace LacmusApp.Avalonia.Elements
 {
-    public class InstalledModelItem : UserControl
+    public partial class InstalledModelItem : UserControl
     {
         public InstalledModelItem()
         {

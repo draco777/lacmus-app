@@ -5,12 +5,12 @@ using System.Text.RegularExpressions;
 using LacmusApp.Image.Interfaces;
 using LacmusPlugin;
 using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using ReactiveUI.SourceGenerators;
 using Serilog;
 
 namespace LacmusApp.Image.Models
 {
-    public class Image<TBrush> : ReactiveObject, IImage<TBrush>
+    public partial class Image<TBrush> : ReactiveObject, IImage<TBrush>
     {
         private readonly ObservableAsPropertyHelper<bool> _isHasObjects;
         private readonly ObservableAsPropertyHelper<string> _name;
@@ -55,9 +55,9 @@ namespace LacmusApp.Image.Models
         public TBrush Brush { get; set; }
         public string Path { get; set; }
         public string Name => _name.Value;
-        [Reactive] public IEnumerable<IObject> Detections { get; set; }
+        [Reactive] private IEnumerable<IObject> _detections;
         public bool IsHasObjects => _isHasObjects.Value;
-        [Reactive] public bool IsFavorite { get; set; }
-        [Reactive] public bool IsWatched { get; set; }
+        [Reactive] private bool _isFavorite;
+        [Reactive] private bool _isWatched;
     }
 }

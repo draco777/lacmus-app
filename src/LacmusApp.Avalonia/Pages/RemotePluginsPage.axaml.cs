@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace LacmusApp.Avalonia.Pages
 {
-    public class RemotePluginsPage : UserControl
+    public partial class RemotePluginsPage : UserControl
     {
         public RemotePluginsPage()
         {

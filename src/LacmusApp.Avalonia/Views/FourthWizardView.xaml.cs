@@ -5,7 +5,7 @@ using LacmusApp.Avalonia.ViewModels;
 
 namespace LacmusApp.Avalonia.Views
 {
-    public class FourthWizardView : ReactiveUserControl<FourthWizardViewModel>
+    public partial class FourthWizardView : ReactiveUserControl<FourthWizardViewModel>
     {
         public FourthWizardView()
         {

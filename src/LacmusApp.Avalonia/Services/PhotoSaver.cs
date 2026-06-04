@@ -34,12 +34,7 @@ public class PhotoSaver
     {
         if (dir == null)
         {
-            var dig = new OpenFolderDialog()
-            {
-                //TODO: Multi language support
-                Title = "Chose directory to save files"
-            };
-            dir = await _writer.SelectDir(dig);
+            dir = await _writer.SelectDir("Chose directory to save files");
         }
         var count = 0;
         
