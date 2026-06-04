@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Reactive;
 using Avalonia;
 using Avalonia.ReactiveUI;
 using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.FontAwesome;
+using ReactiveUI;
 using Serilog;
 
 namespace LacmusApp.Avalonia
@@ -22,6 +24,12 @@ namespace LacmusApp.Avalonia
             //Resources.Console.Culture = new CultureInfo("ru");
             //Console.WriteLine(Resources.Console.Greeting);
             IconProvider.Current.Register<FontAwesomeIconProvider>();
+
+            // Прежде ошибки в ReactiveCommand/OAPH без подписки на ThrownExceptions
+            // роняли всё приложение (RxApp по умолчанию ре-throw'ит). Логируем вместо краха.
+            RxApp.DefaultExceptionHandler = Observer.Create<Exception>(ex =>
+                Log.Error(ex, "Unhandled ReactiveUI pipeline error."));
+
             try
             {
                 BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
