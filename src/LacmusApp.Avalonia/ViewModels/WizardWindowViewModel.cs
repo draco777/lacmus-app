@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Reactive;
@@ -86,7 +87,7 @@ namespace LacmusApp.Avalonia.ViewModels
                     };
                 });
             
-            GoNext = ReactiveCommand.Create(Next, isNext);
+            GoNext = ReactiveCommand.CreateFromTask(Next, isNext);
             GoBack = ReactiveCommand.Create(Back, isBack);
 
             BackButtonText = LocalizationContext.WizardBackButtonText;
@@ -121,7 +122,7 @@ namespace LacmusApp.Avalonia.ViewModels
             }
         }
 
-        private async void Next()
+        private async Task Next()
         {
             switch (Router.NavigationStack.Count)
             {
@@ -137,7 +138,7 @@ namespace LacmusApp.Avalonia.ViewModels
                     break;
                 case 2:
                     Router.Navigate.Execute(_thirdWizardViewModel);
-                    _thirdWizardViewModel.UpdateModelStatus();
+                    _ = _thirdWizardViewModel.UpdateModelStatus();
                     NextButtonText = LocalizationContext.WizardPredictAllButtonText;
                     BackButtonText = LocalizationContext.WizardBackButtonText;
                     break;

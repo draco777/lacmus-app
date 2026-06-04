@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
 using System.Reactive;
@@ -52,11 +53,11 @@ namespace LacmusApp.Avalonia.ViewModels
             LocalizationContext = localizationContext;
             HostScreen = screen;
             _settingsViewModel = settingsViewModel;
-            LoadModelCommand = ReactiveCommand.Create(LoadModel);
-            UpdateModelStatusCommand = ReactiveCommand.Create(UpdateModelStatus);
+            LoadModelCommand = ReactiveCommand.CreateFromTask(LoadModel);
+            UpdateModelStatusCommand = ReactiveCommand.CreateFromTask(UpdateModelStatus);
         }
 
-        public async void UpdateModelStatus()
+        public async Task UpdateModelStatus()
         {
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Working, "Working | loading model...");
             //get the last version of ml model with specific config
@@ -96,7 +97,7 @@ namespace LacmusApp.Avalonia.ViewModels
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Ready, "");
         }
 
-        private async void LoadModel()
+        private async Task LoadModel()
         {
             Settings settingsWindow = new Settings();
             settingsWindow.DataContext = _settingsViewModel;

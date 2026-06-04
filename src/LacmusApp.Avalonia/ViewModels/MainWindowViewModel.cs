@@ -141,26 +141,26 @@ namespace LacmusApp.Avalonia.ViewModels
                 IsShowBorder = !IsShowBorder;
             });
             
-            PredictAllCommand = ReactiveCommand.Create(PredictAll, canExecute);
-            OpenFileCommand = ReactiveCommand.Create(OpenFile, canExecute);
-            SaveAllCommand = ReactiveCommand.Create(SaveAll, canExecute);
-            OpenBugReportCommand = ReactiveCommand.Create(OpenBugReport, canExecute);
+            PredictAllCommand = ReactiveCommand.CreateFromTask(PredictAll, canExecute);
+            OpenFileCommand = ReactiveCommand.CreateFromTask(OpenFile, canExecute);
+            SaveAllCommand = ReactiveCommand.CreateFromTask(SaveAll, canExecute);
+            OpenBugReportCommand = ReactiveCommand.CreateFromTask(OpenBugReport, canExecute);
             
-            NextPageCommand = ReactiveCommand.Create(ShowNextPage);
-            PreviousPageCommand = ReactiveCommand.Create(ShowPreviousPage);
-            FirstPageCommand = ReactiveCommand.Create(ShowFirstPage);
-            LastPageCommand = ReactiveCommand.Create(ShowLastPage);
+            NextPageCommand = ReactiveCommand.CreateFromTask(ShowNextPage);
+            PreviousPageCommand = ReactiveCommand.CreateFromTask(ShowPreviousPage);
+            FirstPageCommand = ReactiveCommand.CreateFromTask(ShowFirstPage);
+            LastPageCommand = ReactiveCommand.CreateFromTask(ShowLastPage);
             
-            ImportAllCommand = ReactiveCommand.Create(ImportFromXml, canExecute);
-            SaveAsCommand = ReactiveCommand.Create(SaveAs, canExecute);
+            ImportAllCommand = ReactiveCommand.CreateFromTask(ImportFromXml, canExecute);
+            SaveAsCommand = ReactiveCommand.CreateFromTask(SaveAs, canExecute);
             ShowGeoDataCommand = ReactiveCommand.Create(ShowGeoData, canExecute);
-            AddToFavoritesCommand = ReactiveCommand.Create(AddToFavorites, canExecute);
+            AddToFavoritesCommand = ReactiveCommand.CreateFromTask(AddToFavorites, canExecute);
             HelpCommand = ReactiveCommand.Create(Help);
             AboutCommand = ReactiveCommand.Create(About);
-            CheckUpdateCommand = ReactiveCommand.Create(CheckUpdate);
-            OpenWizardCommand = ReactiveCommand.Create(OpenWizard);
-            ExitCommand = ReactiveCommand.Create(Exit);
-            OpenSettingsWindowCommand = ReactiveCommand.Create(OpenSettingsWindowAsync, canExecute);
+            CheckUpdateCommand = ReactiveCommand.CreateFromTask(CheckUpdate);
+            OpenWizardCommand = ReactiveCommand.CreateFromTask(OpenWizard);
+            ExitCommand = ReactiveCommand.CreateFromTask(Exit);
+            OpenSettingsWindowCommand = ReactiveCommand.CreateFromTask(OpenSettingsWindowAsync, canExecute);
         }
 
         private IObservable<bool> CanSetup()
@@ -218,7 +218,7 @@ namespace LacmusApp.Avalonia.ViewModels
 
         #endregion
 
-        private async void ShowNextPage()
+        private async Task ShowNextPage()
         {
             if (CurrentPage < TotalPages)
             {
@@ -228,7 +228,7 @@ namespace LacmusApp.Avalonia.ViewModels
             }
         }
 
-        private async void ShowPreviousPage()
+        private async Task ShowPreviousPage()
         {
             if (CurrentPage > 0)
             {
@@ -238,14 +238,14 @@ namespace LacmusApp.Avalonia.ViewModels
             }
         }
 
-        private async void ShowFirstPage()
+        private async Task ShowFirstPage()
         {
             CurrentPage = 0;
             SelectedIndex = 0;
             await UpdateUi();
         }
 
-        private async void ShowLastPage()
+        private async Task ShowLastPage()
         {
             if (TotalPages > 0)
             {
@@ -289,7 +289,7 @@ namespace LacmusApp.Avalonia.ViewModels
             }
         }
 
-        public async void OpenBugReport()
+        public async Task OpenBugReport()
         {
             BugReportWindow window = new BugReportWindow(_themeManager);
             var context = new BugReportViewModel(window, LocalizationContext);
@@ -297,7 +297,7 @@ namespace LacmusApp.Avalonia.ViewModels
             window.Show();
         }
         
-        private async void PredictAll()
+        private async Task PredictAll()
         {
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Working, "");
             try
@@ -372,7 +372,7 @@ namespace LacmusApp.Avalonia.ViewModels
             Zoomer.Reset();
         }
 
-        private async void OpenFile()
+        private async Task OpenFile()
         {
             try
             {
@@ -407,7 +407,7 @@ namespace LacmusApp.Avalonia.ViewModels
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Ready, "");
         }
 
-        private async void ImportFromXml()
+        private async Task ImportFromXml()
         {
             try
             {
@@ -445,7 +445,7 @@ namespace LacmusApp.Avalonia.ViewModels
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Ready, "");
         }
 
-        private async void SaveAll()
+        private async Task SaveAll()
         {
             try
             {
@@ -467,7 +467,7 @@ namespace LacmusApp.Avalonia.ViewModels
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Ready, "");
         }
 
-        private async void SaveAs()
+        private async Task SaveAs()
         {
             SaveAsWindow window = new SaveAsWindow(_themeManager);
             var context = new SaveAsWindowViewModel(window, _photos, _applicationStatusManager, LocalizationContext);
@@ -475,7 +475,7 @@ namespace LacmusApp.Avalonia.ViewModels
             window.Show();
         }
 
-        public async void OpenWizard()
+        public async Task OpenWizard()
         {
             Locator.CurrentMutable.Register(() => new FirstWizardView(), typeof(IViewFor<FirstWizardViewModel>));
             Locator.CurrentMutable.Register(() => new SecondWizardView(), typeof(IViewFor<SecondWizardViewModel>));
@@ -512,7 +512,7 @@ namespace LacmusApp.Avalonia.ViewModels
             window.Show();
         }
 
-        public async void AddToFavorites()
+        public async Task AddToFavorites()
         {
             if (!_photoCollection[SelectedIndex].IsFavorite)
             {
@@ -533,7 +533,7 @@ namespace LacmusApp.Avalonia.ViewModels
             window.Show();
         }
 
-        public async void Exit()
+        public async Task Exit()
         {
             var window = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {
@@ -608,7 +608,7 @@ namespace LacmusApp.Avalonia.ViewModels
             }
         }
 
-        private async void OpenSettingsWindowAsync()
+        private async Task OpenSettingsWindowAsync()
         {
             Settings settingsWindow = new Settings();
             settingsWindow.DataContext = _settingsViewModel;
@@ -619,7 +619,7 @@ namespace LacmusApp.Avalonia.ViewModels
             settingsWindow.Show();
         }
 
-        private async void CheckUpdate()
+        private async Task CheckUpdate()
         {
             try
             {

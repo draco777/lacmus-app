@@ -27,13 +27,13 @@ namespace LacmusApp.Avalonia.ViewModels
         public LoadingWindowViewModel(Window window)
         {
             _window = window;
-            InitCommand = ReactiveCommand.Create(Init);
+            InitCommand = ReactiveCommand.CreateFromTask(Init);
         }
         
         [Reactive] private string _textVersion = GetVersion() + ".";
         public ReactiveCommand<Unit, Unit> InitCommand { get; set; }
 
-        private async void Init()
+        private async Task Init()
         {
             var logModel = new LogViewModel();
             var logPath = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "lacmus", "log.log");
@@ -102,7 +102,6 @@ namespace LacmusApp.Avalonia.ViewModels
             catch (Exception ex)
             {
                 Log.Fatal(ex, "Failed to initialize main window.");
-                throw;
             }
         }
         

@@ -56,7 +56,7 @@ namespace LacmusApp.Avalonia.ViewModels
             _selectedIndex = selectedIndex;
             _settingsViewModel = settingsViewModel;
             LocalizationContext = localizationContext;
-            StopCommand = ReactiveCommand.Create(Stop);
+            StopCommand = ReactiveCommand.CreateFromTask(Stop);
             HostScreen = screen;
         }
         
@@ -220,7 +220,7 @@ namespace LacmusApp.Avalonia.ViewModels
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Ready, "");
         }
 
-        private async void Stop()
+        private async Task Stop()
         {
             //TODO: cancel long operations
         }
