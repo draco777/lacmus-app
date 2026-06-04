@@ -35,13 +35,8 @@
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="**\*.xaml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\*" />
-    <EmbeddedResource Update="Views\BugReportWindow.xaml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <AvaloniaResource Include="**\*.xaml" />
+    <AvaloniaResource Include="Assets\**" />
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

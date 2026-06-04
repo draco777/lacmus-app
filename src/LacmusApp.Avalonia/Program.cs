@@ -28,6 +28,7 @@ namespace LacmusApp.Avalonia
             }
             catch (Exception e)
             {
+                Console.Error.WriteLine("FATAL: " + e);
                 Log.Fatal(e, "Exited with fatal error.");
             }
         }

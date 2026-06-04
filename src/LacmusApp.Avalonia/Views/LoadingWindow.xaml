@@ -1,9 +1,9 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Icon="resm:LacmusApp.Avalonia.Assets.avalonia-logo.ico"
+        Icon="avares://LacmusApp.Avalonia/Assets/avalonia-logo.ico"
         x:Class="LacmusApp.Avalonia.Views.LoadingWindow"
         CanResize="False"
-        HasSystemDecorations="False"
+        SystemDecorations="None"
         Title="About"
         Width="700"
         Height="450">
@@ -16,8 +16,8 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="1" Source="resm:LacmusApp.Avalonia.Assets.lacmus_logo.png"/>
-                <Image Grid.Row="2" Source="resm:LacmusApp.Avalonia.Assets.lacmus_text.png"/>
+                <Image Grid.Row="1" Source="avares://LacmusApp.Avalonia/Assets/lacmus_logo.png"/>
+                <Image Grid.Row="2" Source="avares://LacmusApp.Avalonia/Assets/lacmus_text.png"/>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

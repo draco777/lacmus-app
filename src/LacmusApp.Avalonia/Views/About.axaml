@@ -7,7 +7,7 @@
         d:DataContext="{d:DesignInstance vm:AboutViewModel, IsDesignTimeCreatable=False}"
         mc:Ignorable="d" d:DesignWidth="550" d:DesignHeight="400"
         x:Class="LacmusApp.Avalonia.Views.About"
-        Icon="resm:LacmusApp.Avalonia.Assets.avalonia-logo.ico"
+        Icon="avares://LacmusApp.Avalonia/Assets/avalonia-logo.ico"
         CanResize="False"
         Width = "700"
         Height = "450"
@@ -21,9 +21,9 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="resm:LacmusApp.Avalonia.Assets.lacmus_logo.png"/>
+                    <Image Grid.Column="0" Source="avares://LacmusApp.Avalonia/Assets/lacmus_logo.png"/>
                     <StackPanel Grid.Column="1" Margin="35">
-                        <Image Source="resm:LacmusApp.Avalonia.Assets.lacmus_text.png"/>
+                        <Image Source="avares://LacmusApp.Avalonia/Assets/lacmus_text.png"/>
                         <TextBlock TextWrapping="Wrap" Classes="Heading" Text="{x:Static l:About.LacmusAppHeader}" />
                         <TextBlock TextWrapping="Wrap" Classes="Caption" Text="Copyright (c) 2020 Lacmus Foundation." />
                         <StackPanel Orientation="Horizontal">

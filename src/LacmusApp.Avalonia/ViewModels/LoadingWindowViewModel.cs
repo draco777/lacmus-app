@@ -66,36 +66,44 @@ namespace LacmusApp.Avalonia.ViewModels
                     break;
             }
             
-            var window = new MainWindow();
-            
-            await Task.Delay(1000);
-            var dialog = new AvaloniaPluginDialog(window);
-            var pluginManager = new PluginManager(
-                Path.Join(confDir, "plugins"), config.Repository ?? "https://api.lacmus.ml");
-            var themeManager = new ThemeManager(window);
-            themeManager.UseTheme(config.Theme);
-            var settingsViewModel = new SettingsViewModel(
-                config,
-                configManager,
-                pluginManager,
-                dialog);
-            
-            window.DataContext = new MainWindowViewModel(
-                window,
-                logModel,
-                settingsViewModel,
-                themeManager);
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            try
             {
-                var logWindow = new LogWindow(logModel, themeManager);
-                logWindow.Show();
+                var window = new MainWindow();
+
+                await Task.Delay(1000);
+                var dialog = new AvaloniaPluginDialog(window);
+                var pluginManager = new PluginManager(
+                    Path.Join(confDir, "plugins"), config.Repository ?? "https://api.lacmus.ml");
+                var themeManager = new ThemeManager(window);
+                themeManager.UseTheme(config.Theme);
+                var settingsViewModel = new SettingsViewModel(
+                    config,
+                    configManager,
+                    pluginManager,
+                    dialog);
+
+                window.DataContext = new MainWindowViewModel(
+                    window,
+                    logModel,
+                    settingsViewModel,
+                    themeManager);
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    var logWindow = new LogWindow(logModel, themeManager);
+                    logWindow.Show();
+                }
+
+                window.Show();
+                window.Closing += (sender, args) => Environment.Exit(0);
+
+                _window.Close();
             }
-            
-            window.Show();
-            window.Closing += (sender, args) => Environment.Exit(0);
-            
-            _window.Close();
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Failed to initialize main window.");
+                throw;
+            }
         }
         
         private static string GetVersion()

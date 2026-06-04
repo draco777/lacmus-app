@@ -3,7 +3,7 @@
         xmlns:vm="clr-namespace:LacmusApp.Avalonia.ViewModels;assembly=LacmusApp.Avalonia"
         xmlns:models="clr-namespace:LacmusApp.Avalonia.Models"
         xmlns:reactiveUi="http://reactiveui.net"
-        Icon="resm:LacmusApp.Avalonia.Assets.avalonia-logo.ico"
+        Icon="avares://LacmusApp.Avalonia/Assets/avalonia-logo.ico"
         x:Class="LacmusApp.Avalonia.Views.WizardWindow"
         UseLayoutRounding="True"
         Title="Wizard"

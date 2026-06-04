@@ -1,6 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Icon="resm:LacmusApp.Avalonia.Assets.avalonia-logo.ico"
+        Icon="avares://LacmusApp.Avalonia/Assets/avalonia-logo.ico"
         x:Class="LacmusApp.Avalonia.Views.BugReportWindow"
         CanResize="True"
         Title="Bug Report"

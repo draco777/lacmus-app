@@ -4,7 +4,7 @@
         xmlns:vm="clr-namespace:LacmusApp.Avalonia.ViewModels"
         d:DataContext="{d:DesignInstance vm:SaveAsWindowViewModel, IsDesignTimeCreatable=False}"
         x:Class="LacmusApp.Avalonia.Views.SaveAsWindow"
-        Icon="resm:LacmusApp.Avalonia.Assets.avalonia-logo.ico"
+        Icon="avares://LacmusApp.Avalonia/Assets/avalonia-logo.ico"
         CanResize="False"
         Title="Save as"
         Width="500"

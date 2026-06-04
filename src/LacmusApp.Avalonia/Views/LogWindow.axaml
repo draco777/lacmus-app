@@ -7,7 +7,7 @@
         x:Class="LacmusApp.Avalonia.Views.LogWindow"
         d:DataContext="{d:DesignInstance vm:ILogViewModel, IsDesignTimeCreatable=False}"
         x:DataType="vm:ILogViewModel"
-        Icon="resm:LacmusApp.Avalonia.Assets.avalonia-logo.ico"
+        Icon="avares://LacmusApp.Avalonia/Assets/avalonia-logo.ico"
         Title="Log"
         Width="700"
         Height="450">
