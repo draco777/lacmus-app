@@ -43,13 +43,14 @@ namespace LacmusApp.Appearance.Models
                         Name = "Lacmus YOLO v5",
                         Tag = "LacmusYolo5Plugin.Cpu",
                         Url = "https://github.com/lacmus-foundation/lacmus-research",
-                        Version = new(api: 2, major: 1, minor: 1),
+                        Version = new(api: 2, major: 2, minor: 0),
                         InferenceType = InferenceType.Cpu,
                         OperatingSystems = new HashSet<OperatingSystem>()
                         {
                             OperatingSystem.LinuxAmd64,
                             OperatingSystem.WindowsAmd64,
-                            OperatingSystem.OsxAmd64
+                            OperatingSystem.OsxAmd64,
+                            OperatingSystem.OsxArm
                         }
                     },
                     Repository = "http://api.lacmus.ml",
