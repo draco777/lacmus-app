@@ -50,7 +50,6 @@ namespace LacmusApp.Avalonia.Models
             Width = (int)(WidthBase * scaleX);
             Y = (int)(YBase * scaleY);
             Height = (int)(HeightBase * scaleY);
-            Console.WriteLine($"DEBUG: scaled from ({XBase}, {YBase}) to ({X}, {Y})");
         }
     }
 }

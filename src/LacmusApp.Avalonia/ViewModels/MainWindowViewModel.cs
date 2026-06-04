@@ -325,7 +325,7 @@ namespace LacmusApp.Avalonia.ViewModels
                             photoViewModel.Detections = enumerable;
                             objectCount += photoViewModel.Detections.Count();
                             count++;
-                            Console.WriteLine($"\tProgress: {(double) count / _photos.Items.Count() * 100} %");
+                            Log.Debug("Predict progress: {Percent} %", (double) count / _photos.Items.Count() * 100);
                             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Working, $"Working | {(int)((double) count / _photos.Items.Count() * 100)} %, [{count} of {_photos.Items.Count()}]");
                             PhotoViewModel.Detections = PhotoCollection[SelectedIndex].Detections;
                         }
@@ -342,7 +342,6 @@ namespace LacmusApp.Avalonia.ViewModels
             {
                 Log.Error(e, "Unable to get prediction.");
             }
-            GC.Collect();
             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Ready, "");
         }
 

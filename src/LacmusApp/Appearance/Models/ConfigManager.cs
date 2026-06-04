@@ -31,7 +31,7 @@ namespace LacmusApp.Appearance.Models
             }
             catch (Exception e)
             {
-                Log.Warning($"Con not parse config from {_configPath}.", e);
+                Log.Warning(e, "Cannot parse config from {ConfigPath}, using defaults.", _configPath);
                 var config = new Config()
                 {
                     Language = Language.English,
@@ -53,7 +53,7 @@ namespace LacmusApp.Appearance.Models
                             OperatingSystem.OsxArm
                         }
                     },
-                    Repository = "http://api.lacmus.ml",
+                    Repository = "https://api.lacmus.ml",
                     Theme = Theme.Light,
                     PredictionThreshold = 0.15f,
                     BoundingBoxColour = BoundingBoxColour.Red

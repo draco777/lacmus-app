@@ -56,9 +56,9 @@ namespace LacmusApp.Plugin.Services
                             Assembly pluginAssembly = LoadAssembly(pluginPath);
                             return CreatePluginsFromAssembly(pluginAssembly);
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            Console.WriteLine("cannot load assembly from {0}", pluginPath);
+                            Log.Warning(ex, "Cannot load assembly from {PluginPath}", pluginPath);
                             return new List<IObjectDetectionPlugin>();
                         }
                     }).ToList();
@@ -92,7 +92,6 @@ namespace LacmusApp.Plugin.Services
                             }
                         }
                     }
-                    GC.Collect();
                     Log.Information($"Plugin was imported.");
                 }
                 catch (Exception e)
@@ -134,7 +133,6 @@ namespace LacmusApp.Plugin.Services
                         }
                     }
 
-                    GC.Collect();
                     Log.Information($"The plugin {plugin.Tag}-{plugin.Version.ToString()} was installed.");
                 }
                 catch (Exception e)
@@ -182,8 +180,9 @@ namespace LacmusApp.Plugin.Services
                         Assembly pluginAssembly = LoadAssembly(pluginPath);
                         return CreatePluginsFromAssembly(pluginAssembly);
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Log.Warning(ex, "Cannot load plugin assembly from {PluginPath}", pluginPath);
                         return new List<IObjectDetectionPlugin>();
                     }
                 }).ToList();

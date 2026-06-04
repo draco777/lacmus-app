@@ -156,7 +156,7 @@ namespace LacmusApp.Avalonia.ViewModels
                             count++;
                             PredictProgress = (double) count / _photos.Items.Count() * 100;
                             PredictTextProgress = $"{Convert.ToInt32(PredictProgress)} %";
-                            Console.WriteLine($"\tProgress: {(double) count / _photos.Items.Count() * 100} %");
+                            Log.Debug("Predict progress: {Percent} %", (double) count / _photos.Items.Count() * 100);
                             _applicationStatusManager.ChangeCurrentAppStatus(Enums.Status.Working, $"Working | {(int)((double) count / _photos.Items.Count() * 100)} %, [{count} of {_photos.Items.Count()}]");
                         }
                         catch (Exception e)

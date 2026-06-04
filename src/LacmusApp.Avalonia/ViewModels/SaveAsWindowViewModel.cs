@@ -63,7 +63,7 @@ namespace LacmusApp.Avalonia.ViewModels
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Log.Error(e, "Unable to select output folder.");
                 throw;
             }
         }
